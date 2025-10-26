@@ -6,7 +6,7 @@ import assets from "../assets/assets";
 
 // Initialize GoogleGenAI client
 const ai = new GoogleGenAI({ 
-  apiKey: "AIzaSyDDbstP6g3lddRP4vDbJvr9uyJH0mVoz2w" 
+  apiKey: process.env.VITE_GEMINI_API_KEY
 });
 
 // Note: Import these in your actual project:
