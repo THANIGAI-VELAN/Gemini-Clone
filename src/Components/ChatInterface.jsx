@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Plus, SlidersHorizontal, Mic, Send, PlusCircleIcon, PlusIcon, Mic2, Mic2Icon } from "lucide-react";
+import { Plus, SlidersHorizontal, Mic, Send } from "lucide-react";
 import { GoogleGenAI } from "@google/genai";
 import assets from "../assets/assets";
 
@@ -107,9 +107,7 @@ function ChatInterface() {
               <button
                 onClick={() => openSignIn({ redirectUrl: "/chat" })}
                 className="px-5 py-2.5 rounded-full text-sm font-medium 
-                           bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 
-                           hover:from-blue-500 hover:to-purple-500
-                           shadow-[0_0_12px_rgba(59,130,246,0.5)] 
+                          border-2 border-blue-600  text-white
                            transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.7)]"
               >
                 Sign In
@@ -165,8 +163,8 @@ function ChatInterface() {
           </div>
         ) : (
           /* --- After Chat Starts --- */
-          <div className="flex flex-col flex-1 overflow-hidden mx-50">
-            <div className="flex-1 overflow-y-auto space-y-6 px-2 custom-scrollbar mb-4 mx-50">
+          <div className="flex flex-col flex-1 overflow-hidden mx-20">
+            <div className="flex-1 overflow-y-auto space-y-6 px-2 custom-scrollbar mb-4 mx-40">
               {messages.map((msg, i) => (
                 <div
                   key={i}
@@ -179,11 +177,16 @@ function ChatInterface() {
                     className={`max-w-[75%] px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                       msg.role === "user"
                         ? "bg-blue-600 text-white rounded-br-none"
-                        : "bg-[#363636] text-gray-200 rounded-bl-none border border-gray-800"
+                        : "font-bold text-gray-200 rounded-bl-none border border-gray-800"
                     }`}
                   >
-                    {msg.text}
+                    {msg.text} 
+                      {/* <div className={`  ${
+                    msg.role === "user" ? "flex-none p-0" : " w-10 h-10"}`}><Copy />
+                      <Share2Icon /></div> */}
+                  
                   </div>
+                  
                 </div>
               ))}
 
@@ -196,10 +199,11 @@ function ChatInterface() {
               )}
               {/* Gemini Icon at the end */}
               <div className="flex items-end flex-row">
-         
+
+
               <div ref={messagesEndRef} />
-              </div>
             </div>
+          </div>
 
                  {/* Input Section */}
             <div className="w-full max-w-4xl mx-auto">
@@ -232,32 +236,7 @@ function ChatInterface() {
               </div>
             </div>
             {/* Input Section */}
-            {/* <div className="flex  items-center w-full bg-[#1C1C1E] rounded-3xl px-8 py-4 mb-15 
-                            shadow-[0_0_15px_rgba(59,130,246,0.1)] border border-gray-800 
-                            hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Type your message..."
-                className="grow bg-transparent outline-none text-gray-300 text-lg"
-              />
-              <button
-                onClick={handleSend}
-                disabled={loading}
-                className="flex items-center gap-5 cursor-pointer hover:text-gray-200 transition"
-              >
-                <Send className="w-5 h-5 text-gray-400 m-2" />
-              </button>
-              <div className="flex  items-center gap-4 text-gray-400">
-                <Plus className="w-5 h-5 cursor-pointer hover:text-gray-200 transition" />
-                <div className="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition">
-                  <SlidersHorizontal className="w-5 h-5" />
-                  <span className="text-sm hidden sm:inline">Tools</span>
-                </div>
-                <Mic className="w-5 h-5 cursor-pointer hover:text-gray-200 transition" />
-              </div>
-            </div> */}
+
           </div>
         )}
       </div>
